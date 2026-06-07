@@ -1,0 +1,397 @@
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.token-page {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #EDFAF2 0%, #F6FCF8 50%, #FFFFFF 100%);
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font);
+}
+
+/*  Body  */
+.token-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 36px 40px;
+}
+
+/*  Success Icon  */
+.success-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.success-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background:  #EAF6EF;
+    border: 1.5px solid #C8E8D4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 28px rgba(57, 182, 109, .18);
+    animation: popIn .5s cubic-bezier(.34, 1.56, .64, 1) both;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(.6);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.success-title {
+    font-size: 32px;
+    font-weight: 800;
+    color:  #2B9457;
+    letter-spacing: -.5px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.success-sub {
+    font-size: 16px;
+    color: #7A9488;
+    font-weight: 500;
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+/*  Info Card  */
+.info-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    background:  #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid  #DDEAE2;
+    box-shadow:  0 8px 32px rgba(34, 90, 60, .10);
+    width: 100%;
+    max-width: 820px;
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+/* Left panel */
+.info-left {
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+}
+
+.info-divider {
+    height: 1px;
+    background:  #DDEAE2;
+    margin: 0;
+}
+
+.info-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background:  #EAF6EF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #7A9488;
+    font-weight: 600;
+}
+
+.info-value {
+    font-size: 17px;
+    font-weight: 700;
+    color:  #173A28;
+}
+
+.token-green {
+    color:  #2B9457;
+    font-size: 22px;
+}
+
+/* Right panel — token display */
+.token-display {
+    width: 240px;
+    background: linear-gradient(160deg, #F0FBF4, #EAFAF1);
+    border-left: 1.5px dashed #C8E8D4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 24px;
+    gap: 10px;
+    position: relative;
+}
+
+
+
+.token-display-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.td-line {
+    flex: 1;
+    height: 1.5px;
+    background: #C8E8D4;
+}
+
+.td-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color:  #2B9457;
+    white-space: nowrap;
+}
+
+.token-big {
+    font-size: 52px;
+    font-weight: 900;
+    color:  #2B9457;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.td-divider {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.td-pulse {
+    width: 60px;
+    height: 14px;
+}
+
+.waiting-icon {
+    width: 64px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.waiting-text {
+    font-size: 13px;
+    color: #3A5246;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/*  Action Buttons  */
+.token-actions {
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    max-width: 820px;
+    margin-bottom: 20px;
+}
+
+.print-btn,
+.home-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-family: var(--font);
+    border: none;
+    transition: box-shadow .2s, transform .15s;
+}
+
+.print-btn {
+    background:  #FFFFFF;
+    border: 1.5px solid  #DDEAE2;
+}
+
+.print-btn:hover {
+    box-shadow: 0 4px 16px rgba(57, 182, 109, .15);
+    transform: translateY(-1px);
+}
+
+.home-btn {
+    background: var(--dark-green);
+    box-shadow: 0 6px 22px rgba(57, 182, 109, .28);
+}
+
+.home-btn:hover {
+    background:  #2B9457;
+    transform: translateY(-1px);
+}
+
+.btn-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background:  #EAF6EF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.btn-icon-white {
+    background: rgba(255, 255, 255, .22);
+}
+
+.btn-text-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: left;
+}
+
+.btn-main {
+    font-size: 16px;
+    font-weight: 800;
+    color:  #173A28;
+}
+
+.btn-sub {
+    font-size: 12px;
+    font-weight: 500;
+    color: #7A9488;
+}
+
+.home-btn .btn-main,
+.home-btn .btn-sub {
+    color: white;
+}
+
+.home-btn .btn-sub {
+    opacity: .85;
+}
+
+
+.spin-icon {
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*  Responsive  */
+@media (max-width: 768px) {
+
+
+    .token-body {
+        padding: 32px 16px 28px;
+    }
+
+    .info-card {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .token-display {
+        border-left: none;
+        border-top: 1.5px dashed #C8E8D4;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .token-display::before,
+    .token-display::after {
+        top: -12px;
+        left: auto;
+        bottom: auto;
+    }
+
+    .token-display::before {
+        left: calc(50% - 60px);
+    }
+
+    .token-display::after {
+        left: calc(50% + 36px);
+    }
+
+    .token-big {
+        font-size: 40px;
+    }
+
+    .token-actions {
+        flex-direction: column;
+    }
+
+    .logo-tagline {
+        display: none;
+    }
+
+    .step-label {
+        font-size: 10px;
+    }
+
+    .line {
+        width: 30px;
+    }
+
+    .success-title {
+        font-size: 24px;
+    }
+}
+
+@media print {
+
+    .token-actions,
+    .success-area,
+    .success-title,
+    .success-sub {
+        display: none
+    }
+
+    .token-page {
+        background: white;
+    }
+
+    .info-card {
+        box-shadow: none;
+        border: 1.5px solid #ccc;
+    }
+}

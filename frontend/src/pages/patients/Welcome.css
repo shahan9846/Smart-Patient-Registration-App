@@ -1,0 +1,255 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.welcome-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(160deg, #E8F7EE 0%, #F4FBF6 40%, #FFFFFF 100%);
+    font-family: var(--font);
+    position: relative;
+    overflow: hidden;
+}
+
+/*  Top Bar  */
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 36px;
+    z-index: 10;
+}
+
+.topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    background: #EAF6EF;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #C6E8D4;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #173A28;
+    line-height: 1.2;
+}
+
+.logo-tagline {
+    font-size: 11.5px;
+    color: #6E8C7A;
+    font-weight: 500;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff;
+    border: 1.5px solid #D0E8DA;
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2B4D39;
+    cursor: pointer;
+    font-family:var(--font);
+    transition: box-shadow 0.2s;
+}
+
+.lang-btn:hover {
+    box-shadow: 0 2px 12px rgba(57, 182, 109, 0.15);
+}
+
+/*  Decorative Plus Signs  */
+.plus {
+    position: absolute;
+    color: #B2DFC4;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+}
+
+.plus-1 {
+    top: 22%;
+    left: 22%;
+}
+
+.plus-2 {
+    top: 22%;
+    right: 22%;
+}
+
+.plus-3 {
+    top: 50%;
+    left: 10%;
+}
+
+.plus-4 {
+    top: 50%;
+    right: 10%;
+}
+
+/*  Center Content  */
+
+.welcome-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 120px 24px 60px;
+    max-width: 560px;
+    width: 100%;
+}
+
+/*  Icon Circle  */
+
+.welcome-icon-wrap {
+    width: 136px;
+    height: 136px;
+    background: radial-gradient(circle at 40% 35%, #DFFAED, #C8F0DA);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    box-shadow: 0 8px 32px rgba(57, 182, 109, 0.18);
+}
+
+.welcome-title {
+    font-size: 52px;
+    font-weight: 800;
+    color: #173A28;
+    letter-spacing: -1px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.welcome-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E3D2B;
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+}
+
+.heartbeat-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 20px;
+}
+
+.divider-line {
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #8FDCAE, transparent);
+    border-radius: 2px;
+}
+
+.heartbeat-svg {
+    width: 60px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.welcome-body {
+    font-size: 16px;
+    color: #6E8C7A;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 36px;
+}
+
+.start-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 419px;
+    background: #39B66D;
+    color: #fff;
+    padding: 14px 0px;
+    border-radius: 60px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 28px rgba(57, 182, 109, 0.30);
+}
+
+.start-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.start-btn:hover {
+    background: #2E9F5C;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(57, 182, 109, 0.38);
+}
+
+
+
+@media (max-width: 600px) {
+    .welcome-center {
+        padding: 0 0;
+    }
+    .topbar{
+        display: block;
+    }
+   
+    .lang-btn{
+        margin-top: 10px;
+       text-align: center;
+       font-size: 10px;
+       display: none;
+    }
+    .start-btn{
+        width: 260px;
+        font-size: 13px;
+        padding: 9px 0px;
+    }
+    .welcome-title{
+        font-size: 45px;
+    }
+}
