@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 
@@ -12,6 +13,8 @@ app.use(express.json())
 
 app.use('/api/patients', patientRoutes)
 
-app.listen(5000, () => {
-    console.log('Server Runnig...')
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+    console.log(`Server Running on port ${PORT}...`)
 })

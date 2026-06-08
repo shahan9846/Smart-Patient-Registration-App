@@ -19,15 +19,15 @@ const TokenScreen = () => {
         setTimeout(() => { navigate('/') }, 3000)
     }
 
-    const formatDate = (raw_date) => {
-        if (!raw_date) return ''
+    const formatDate = (raw_formated_date) => {
+        if (!raw_formated_date) return "";
         try {
-            const latest_date = new Date(raw_date)
-            return latest_date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) + ' • ' + latest_date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+            const date = new Date(raw_formated_date);
+            return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
         } catch {
-            return raw_date
+            return raw_formated_date;
         }
-    }
+    };
 
     useEffect(() => {
         const loadfetchPatientData = async () => {

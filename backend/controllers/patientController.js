@@ -67,7 +67,7 @@ const admin_fetchPatient = (req, res) => {
     let values = []
 
     if (search) {
-        query = `SELECT *FROM patientsWHERE nameLIKE ?`
+        query = `SELECT *FROM patientsWHERE name LIKE ?`
         values = [`%${search}%`]
     }
 

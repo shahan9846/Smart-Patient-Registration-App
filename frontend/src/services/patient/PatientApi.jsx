@@ -1,10 +1,11 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:5000/api/patients'
+const API_URL= import.meta.env.VITE_API_URL 
 
 export const createPatient = async (fetchPatientData) => {
     try {
-        const res = await axios.post(API_URL,fetchPatientData)
+        const res = await axios.post(API_URL, fetchPatientData)
+        console.log(res.data)
         return res.data
     } catch (error) {
         console.log(error.message)

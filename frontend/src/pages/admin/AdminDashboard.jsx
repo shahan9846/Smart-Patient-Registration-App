@@ -3,11 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { admin_fetchPatientData } from "../../services/admin/AdminApi";
 import { LayoutDashboard, LogOut, Search, ChevronDown, ChevronLeft, ChevronRight, Eye } from "lucide-react";
 import "./AdminDashboard.css";
+import { toast } from "sonner";
 
 const AdminDashboard = () => {
-
-
-
+    
     const [patientsData, setPatientsData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
@@ -16,7 +15,30 @@ const AdminDashboard = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeTab, setActiveTab] = useState("dashboard");
 
+
     const itemsPerPage = 6;
+
+    const filtered = patientsData.filter(p => p.department === dept || dept === "all");
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
+    useEffect(() => {
+        const load = async () => {
+            setLoading(true);
+            try {
+                const data = await admin_fetchPatientData();
+                setPatientsData(data);
+            } catch (error) {
+                console.error(error?.message);
+                toast.error("Failed to connect to the server. Is the backend running?");
+            } finally {
+                setLoading(false);
+            }
+        };
+        load();
+    }, []);
 
     const handleChange = async (e) => {
         const patient_name = e.target.value
@@ -28,45 +50,20 @@ const AdminDashboard = () => {
             setPatientsData(data)
         }
         catch (error) {
-            console.error(
-                error.message
-            )
+            console.error(error.message)
+            toast.error("Failed to search patients. Please try again.");
         }
     }
 
-    const filtered = patientsData.filter(p => p.department === dept || dept === "all");
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(filtered.length / itemsPerPage);
-
-    const formatDate = (raw) => {
-        if (!raw) return "";
+    const formatDate = (raw_formated_date) => {
+        if (!raw_formated_date) return "";
         try {
-            const d = new Date(raw);
-            return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
-                + " " + d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+            const date = new Date(raw_formated_date);
+            return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
         } catch {
-            return raw;
+            return raw_formated_date;
         }
     };
-
-    useEffect(() => {
-        const load = async () => {
-            setLoading(true);
-            try {
-                const data = await admin_fetchPatientData();
-                setPatientsData(data);
-            } catch (error) {
-                console.error(error?.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-        load();
-    }, []);
-
-
 
     return (
         <div className="admin-page">
