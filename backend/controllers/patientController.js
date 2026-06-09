@@ -5,9 +5,9 @@ const createPatient = (req, res) => {
 
     const token = "P" + Math.floor(1000 + Math.random() * 9000)
 
-    const isoString = new Date().toISOString()
+    const created_at = new Date().toISOString()
 
-    const created_at = isoString.slice(0, 10)
+    // const created_at = isoString.slice(0, 10)
 
     db.run(`
         INSERT INTO patients(

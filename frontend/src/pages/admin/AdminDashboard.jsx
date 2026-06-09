@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { admin_fetchPatientData } from "../../services/admin/AdminApi";
-import { LayoutDashboard, LogOut, Search, ChevronDown, ChevronLeft, ChevronRight, Eye } from "lucide-react";
+import { LayoutDashboard, LogOut, Search, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import "./AdminDashboard.css";
 import { toast } from "sonner";
 
 const AdminDashboard = () => {
-    
+
     const [patientsData, setPatientsData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
@@ -14,6 +14,7 @@ const AdminDashboard = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [menuOpen, setMenuOpen] = useState(false);
     const [activeTab, setActiveTab] = useState("dashboard");
+    const navigate = useNavigate();
 
 
     const itemsPerPage = 6;
@@ -24,10 +25,15 @@ const AdminDashboard = () => {
     const currentItems = filtered.slice(indexOfFirstItem, indexOfLastItem);
     const totalPages = Math.ceil(filtered.length / itemsPerPage);
 
+    
+
     useEffect(() => {
         const load = async () => {
             setLoading(true);
             try {
+                // Added a 1.5 second artificial delay so you can see the spinner!
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
                 const data = await admin_fetchPatientData();
                 setPatientsData(data);
             } catch (error) {
@@ -55,13 +61,20 @@ const AdminDashboard = () => {
         }
     }
 
-    const formatDate = (raw_formated_date) => {
-        if (!raw_formated_date) return "";
+    const formatDate = (raw_formated_date_time) => {
+        if (!raw_formated_date_time) return "";
         try {
-            const date = new Date(raw_formated_date);
-            return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+            const date = new Date(raw_formated_date_time);
+            return date.toLocaleString("en-IN", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
+            });
         } catch {
-            return raw_formated_date;
+            return raw_formated_date_time;
         }
     };
 
@@ -108,7 +121,16 @@ const AdminDashboard = () => {
                         >
                             <span className="nav-icon"><LayoutDashboard size={18} /></span>Dashboard
                         </li>
-
+                        <li
+                            className="logout-nav-btn"
+                            onClick={() => {
+                                localStorage.removeItem('adminToken');
+                                navigate('/admin-login');
+                            }}
+                            style={{ cursor: "pointer", color: "#e74c3c" }}
+                        >
+                            <span className="nav-icon"><LogOut size={18} color="#e74c3c" /></span>Logout
+                        </li>
                     </ul>
                 </nav>
             </aside>

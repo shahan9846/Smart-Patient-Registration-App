@@ -19,7 +19,7 @@ db.run(
 
     token TEXT,
 
-    created_at TEXT 
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP 
     
     )`,
     (err) => {

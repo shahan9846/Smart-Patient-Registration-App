@@ -9,6 +9,7 @@ A modern, self-check-in kiosk application for hospitals and clinics. Patients ca
 - **Token Generation**
 - **SQLite Database**
 - **Admin Dashboard**
+- **Admin Login Validation**
 - **Search Patients**
 - **Department Filter**
 - **Print Token**
@@ -67,3 +68,5 @@ A modern, self-check-in kiosk application for hospitals and clinics. Patients ca
 - GET /api/patients/:id
 
 - GET /api/patients?search=name
+
+- POST /api/admin/login

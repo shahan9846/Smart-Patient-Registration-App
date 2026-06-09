@@ -13,27 +13,39 @@ const TokenScreen = () => {
     const [patientData, setPatientData] = useState({})
     const navigate = useNavigate()
 
-    const printSlip = () => {
-        window.print()
-        toast.success('Shortly Redirect to Home page..')
-        setTimeout(() => { navigate('/') }, 3000)
-    }
+    // const printSlip = () => {
+    //     window.print()
+    //     toast.success('Shortly Redirect to Home page..')
+    //     setTimeout(() => { navigate('/') }, 10000)
+    // }
 
-    const formatDate = (raw_formated_date) => {
-        if (!raw_formated_date) return "";
+    const formatDate = (raw_formated_date_time) => {
+        if (!raw_formated_date_time) return "";
+        // console.log(raw_formated_date_time)
         try {
-            const date = new Date(raw_formated_date);
-            return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) + " " + date.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+            const date = new Date(raw_formated_date_time);
+            return date.toLocaleString("en-IN", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
+            });
+           
+    
         } catch {
-            return raw_formated_date;
+            return raw_formated_date_time;
         }
+        
     };
 
     useEffect(() => {
         const loadfetchPatientData = async () => {
             const fetchPatient_data = await fetchPatientData(id)
-            console.log(fetchPatient_data)
+            // console.log(fetchPatient_data)
             setPatientData(fetchPatient_data)
+            setTimeout(() => { navigate('/') }, 5000)
         }
         loadfetchPatientData()
     }, [id])
@@ -112,7 +124,7 @@ const TokenScreen = () => {
                 </div>
 
                 <div className="token-actions">
-                    <button className="print-btn" onClick={printSlip}>
+                    <button className="print-btn" >
                         <span className="btn-icon-wrap"><Printer size={20} color="#39B66D" /></span>
                         <span className="btn-text-col">
                             <span className="btn-main">Print Token</span>
